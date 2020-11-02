@@ -1,3 +1,8 @@
+/**
+ * Gets information about a 'Pledge' page
+ * @param {String} id  Could technically be implemented as number. Unique key for each pledge
+ * @param {String} slug url friendly short-name for pledge. Must match string
+ */
 export const getPledgeInfo = (id, slug) => {
     // use the id and slug to verify that they match up
     // although the id is technically a primary key
@@ -21,29 +26,55 @@ Meh ramps meditation, sriracha portland paleo chambray. Hoodie pabst keffiyeh, t
 Bitters meditation marfa, retro knausgaard next level echo park you probably haven't heard of them vexillologist letterpress scenester etsy chartreuse lumbersexual. Plaid etsy viral 3 wolf moon mixtape aesthetic 90's tattooed pitchfork selfies. Migas butcher disrupt leggings quinoa man bun, portland taxidermy bushwick selvage craft beer food truck everyday carry stumptown paleo. Dreamcatcher synth iceland twee, hot chicken slow-carb vegan swag vaporware mlkshk. Pour-over readymade listicle, gochujang tumeric hexagon knausgaard neutra. Taiyaki woke 90's kale chips skateboard plaid mumblecore twee crucifix cronut put a bird on it.
 Jianbing shoreditch heirloom activated charcoal, kitsch gochujang air plant freegan tilde. Pitchfork try-hard kinfolk, drinking vinegar air plant trust fund tacos thundercats umami kale chips. Health goth pour-over pinterest lumbersexual selvage. Edison bulb vape 90's hell of street art vexillologist, keffiyeh vegan cold-pressed.
 `;
+    // if no id exists, or invalid slug, return an empty object instead
     return {
-        id,
-        title,
-        description,
-        pledge_goal,
-        pledge_count,
-        color_primary,
-        color_secondary,
-        img_url,
-        blurb,
-        creator: null,
+        id, // should be same as id sent
+        title, // name of the pledge for display as title
+        blurb, // short description of pledge
+        description, // long description of pledge
+        pledge_goal, // how many people we want to enact the pledge
+        pledge_count, // number of people who have already committed
+        img_url, // url for the image to display. Should be hosted in S3 or something?
+        creator: null, // added this to potentially have a 'created by' field for user-generated Pledges. Unused.
+        color_primary, // optional for custom styles (unused)
+        color_secondary, // optional for custom styles (unused)
     }
 }
 
+/**
+ * A transaction is what happens when someone commits to a pledge
+ * This function should save a transaction in our database,
+ * and if succesful, return a unique transaction id.
+ * If unsuccesful, return a predefined failure value (your choice),
+ * or send the response back with an error code, and we can catch
+ * it here and return a false-y value from this wrapper
+ * @param {*} email 
+ * @param {*} first 
+ * @param {*} last 
+ */
+export const submitTransaction = async (email, first, last) => {
+    return 123; // id stub
+}
+
+/**
+ * A transaction is what happens when someone commits to a pledge
+ * Each transaction has an ID associated with it.
+ * This endpoint returns information about that transaction
+ * We use it to display confirmations
+ * @param {*} id 
+ */
 export const getTransactionInfo = id => {
+    const first_name = null;
+    const last_name = null;
     const email = 'testemail@test.test'
     const pledge_url = 'https://url-to-pledge-link.com'
+    const pledge_id = 555;
     return {
+        id,
+        first_name,
+        last_name,
         email,
+        pledge_id,
         pledge_url,
     }
-}
-
-export const submitTransaction = async (email, first, last) => {
-    return 123; // stub
 }
