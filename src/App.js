@@ -8,10 +8,14 @@ import {
   Route,
   // Link
 } from "react-router-dom";
+import Menu from './components/Menu';
+import Homepage from './components/Homepage';
+import FileNotFound from './components/FileNotFound';
 
 export default function App() {
   return (
     <Router>
+      <Menu />
       {/* <div> */}
         {/* <nav>
           <ul>
@@ -30,10 +34,12 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/pledge/:id/:slug" component={Pledge} />
-          <Route path="/thank-you/:id" component={Confirmation} />
+          <Route exact path="/pledge/:id/:slug" component={Pledge} />
+          <Route exact path="/thank-you/:id" component={Confirmation} />
+          {/* <Route exact path="/page-not-found" component={} /> */}
+          <Route exact path="/" component={Homepage} />
+          <Route path="/" component={FileNotFound} />
         </Switch>
-      {/* </div> */}
     </Router>
   );
 }

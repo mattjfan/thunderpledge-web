@@ -3,7 +3,7 @@
  * @param {String} id  Could technically be implemented as number. Unique key for each pledge
  * @param {String} slug url friendly short-name for pledge. Must match string
  */
-export const getPledgeInfo = (id, slug) => {
+export const getPledgeInfo = async (id, slug) => {
     // use the id and slug to verify that they match up
     // although the id is technically a primary key
     // these should be used together as primary key
@@ -63,7 +63,7 @@ export const submitTransaction = async (email, first, last) => {
  * We use it to display confirmations
  * @param {*} id 
  */
-export const getTransactionInfo = id => {
+export const getTransactionInfo = async id => {
     const first_name = null;
     const last_name = null;
     const email = 'testemail@test.test'

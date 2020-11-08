@@ -1,14 +1,34 @@
 import React from 'react';
 import * as GlobalStyles from '../globalStyles';
 import * as api from '../../api';
+import FileNotFound from '../FileNotFound';
 export default class Confirmation extends React.Component {
-    state = {}
+    state = {
+        loadingState: 'loading'
+    }
     componentDidMount() {
         const { id } = this.props;
+        api.getTransactionInfo(id)
+            .then(
+                transactionInfo => {
+                    if (transactionInfo) {
+                        this.setState({...transactionInfo, loadingState: 'loaded'})
+                    } else {
+                        this.setState({ loadingState: 'error' })
+                    }
+            }
+        )
         this.setState(api.getTransactionInfo(id))
     }
     render() {
-        return <GlobalStyles.PaddedContainer>
+        const { loadingState } = this.state;
+        if (loadingState === 'loading') {
+            return null;
+        }
+        if (loadingState === 'error') {
+            return <FileNotFound />
+        }
+        return <GlobalStyles.PaddedContainer style={{paddingTop: '2em'}}>
             <GlobalStyles.Title>Thanks for your pledge!</GlobalStyles.Title>
             <p style={{ fontSize: '1.6em' }}>
                 Thank you for helping us make the world a little bit better together.

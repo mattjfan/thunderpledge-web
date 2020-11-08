@@ -7,10 +7,10 @@ export const Title = styled.h1`
 `
 export const PaddedContainer = styled.div`
     margin-left: 15%;
-    margin-right:15%;
-    @media only screen and (max-width: 600px) {
-    margin-left: 8px;
-    margin-right: 8px;
+    margin-right: 15%;
+    @media only screen and (max-width: 576px) {
+        margin-left: 12px;
+        margin-right: 12px;
     }
 `;
 export const Image = styled.div`
