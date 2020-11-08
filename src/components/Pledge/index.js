@@ -1,6 +1,6 @@
 import React from 'react';
 import { Progress, Input, Button } from 'antd';
-// import * as Styles from './styles';
+import * as Styles from './styles';
 import * as GlobalStyles from '../globalStyles';
 import * as api from '../../api';
 import styled from 'styled-components';
@@ -78,7 +78,7 @@ export default class Pledge extends React.Component {
         }
         // const isMobile = useMediaQuery({ maxWidth: '576px' });
         return <GlobalStyles.PaddedContainer style={{ overflow: 'none', marginBottom: '52px' }}>
-            
+            <Styles.ColorWrapper color="#E8B105">
             <GlobalStyles.Title
                 textAlign="center"
                 style={{ marginTop: '20px', marginBottom: '20px' }}
@@ -135,7 +135,7 @@ export default class Pledge extends React.Component {
                 </div>
             </MediaQuery>
                
-            
+            </Styles.ColorWrapper>
             {/* <h1>{this.state.id}</h1> */}
             </GlobalStyles.PaddedContainer>
     }
